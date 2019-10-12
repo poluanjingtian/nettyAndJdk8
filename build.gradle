@@ -15,6 +15,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'io.netty', name: 'netty-all', version: '4.1.42.Final'
     compile 'com.google.guava:guava:28.1-jre'
+    compile 'com.alibaba:fastjson:1.2.62'
     compile group: 'joda-time', name: 'joda-time', version: '2.10.3'
     compile group: 'org.joda', name: 'joda-primitives', version: '1.0'
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.10.0'
@@ -42,9 +43,12 @@ protobuf {
             artifact = 'io.grpc:protoc-gen-grpc-java:1.24.0'
         }
     }
+    generatedFilesBaseDir = "src"
     generateProtoTasks {
         all()*.plugins {
-            grpc {}
+            grpc {
+                outputSubDir = 'java'
+            }
         }
     }
 }
